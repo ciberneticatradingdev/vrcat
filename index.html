@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$VRCAT — the first cat in the metaverse</title>
+<meta name="description" content="$VRCAT — launched on pons family, paired with META stocks. The first cat in the metaverse.">
+<meta property="og:title" content="$VRCAT — the first cat in the metaverse">
+<meta property="og:description" content="launched on pons family. paired with META stocks. paws up only.">
+<meta property="og:image" content="/assets/banner.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,700;1,800;1,900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lime:#cbe708;
+  --lime-deep:#b8cf00;
+  --ink:#1c2601;
+  --ink-soft:#3a4a08;
+  --meta:#0668E1;
+  --white:#ffffff;
+  --card:#dcf22e;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--lime);
+  color:var(--ink);
+  font-family:'Space Grotesk',sans-serif;
+  overflow-x:hidden;
+}
+h1,h2,h3,.disp{font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;letter-spacing:-.02em;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;
+  background:rgba(203,231,8,.85);backdrop-filter:blur(12px);
+  border-bottom:3px solid var(--ink);
+}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Archivo';font-style:italic;font-weight:900;font-size:1.4rem;text-decoration:none;}
+.nav-logo img{width:38px;height:38px;border-radius:50%;border:2px solid var(--ink);object-fit:cover;}
+.nav-links{display:flex;gap:26px;align-items:center;}
+.nav-links a{text-decoration:none;font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.04em;}
+.nav-links a:hover{color:var(--meta);}
+.btn{
+  display:inline-block;background:var(--ink);color:var(--lime);
+  font-family:'Archivo';font-style:italic;font-weight:900;
+  padding:12px 26px;border-radius:999px;text-decoration:none;
+  font-size:1rem;text-transform:uppercase;letter-spacing:.03em;
+  border:3px solid var(--ink);transition:.15s;cursor:pointer;
+}
+.btn:hover{background:var(--meta);color:var(--white);border-color:var(--meta);transform:translateY(-2px);}
+.btn.alt{background:transparent;color:var(--ink);}
+.btn.alt:hover{background:var(--ink);color:var(--lime);border-color:var(--ink);}
+.nav-buy{padding:9px 20px;font-size:.9rem;}
+.hamb{display:none;}
+
+/* ---------- HERO ---------- */
+.hero{
+  min-height:calc(100vh - 70px);
+  display:grid;grid-template-columns:1.1fr 1fr;align-items:center;
+  max-width:1200px;margin:0 auto;padding:40px 28px 60px;gap:20px;
+}
+.hero-title{font-size:clamp(4rem,11vw,9rem);line-height:.9;}
+.hero-title .dollar{color:var(--white);-webkit-text-stroke:3px var(--ink);}
+.hero-tag{margin-top:18px;font-size:clamp(1.1rem,2.2vw,1.5rem);font-weight:500;max-width:30ch;}
+.hero-badges{margin-top:22px;display:flex;flex-direction:column;gap:10px;font-size:1.05rem;}
+.hero-badges .badge{display:flex;align-items:center;gap:10px;}
+.badge-ico{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:900;font-family:'Archivo';font-style:normal;}
+.badge-ico.pons{background:var(--ink);color:var(--lime);}
+.badge-ico.meta{background:transparent;color:var(--meta);font-size:1.6rem;line-height:1;}
+.hero-ctas{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;}
+.hero-img{position:relative;}
+.hero-img img{
+  width:min(480px,100%);margin:0 auto;
+  -webkit-mask-image:radial-gradient(ellipse 72% 72% at 50% 50%,#000 52%,transparent 74%);
+  mask-image:radial-gradient(ellipse 72% 72% at 50% 50%,#000 52%,transparent 74%);
+  animation:float 5s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-18px) rotate(1.5deg);}}
+
+/* CA bar */
+.ca-bar{
+  margin-top:26px;display:flex;align-items:center;gap:0;
+  max-width:520px;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--card);
+}
+.ca-bar .ca-label{background:var(--ink);color:var(--lime);font-family:'Archivo';font-style:italic;font-weight:900;padding:12px 14px;font-size:.85rem;}
+.ca-bar .ca-value{flex:1;padding:12px 14px;font-size:.82rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:monospace;}
+.ca-bar button{
+  border:none;background:var(--meta);color:#fff;padding:12px 18px;cursor:pointer;
+  font-family:'Archivo';font-style:italic;font-weight:900;font-size:.85rem;text-transform:uppercase;
+}
+.ca-bar button:hover{filter:brightness(1.15);}
+
+/* ---------- MARQUEE ---------- */
+.marquee{
+  background:var(--ink);color:var(--lime);
+  overflow:hidden;white-space:nowrap;padding:14px 0;
+  border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+  transform:rotate(-1deg) scale(1.02);
+}
+.marquee-inner{display:inline-block;animation:scroll 22s linear infinite;font-family:'Archivo';font-style:italic;font-weight:900;font-size:1.3rem;text-transform:uppercase;}
+.marquee-inner span{margin:0 22px;}
+.marquee-inner .blue{color:#6aa9ff;}
+@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ---------- SECTIONS ---------- */
+section{max-width:1200px;margin:0 auto;padding:90px 28px;}
+.sec-title{font-size:clamp(2.4rem,6vw,4.5rem);text-transform:uppercase;margin-bottom:14px;}
+.sec-sub{font-size:1.15rem;max-width:60ch;color:var(--ink-soft);margin-bottom:40px;}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+.about-card{
+  background:var(--card);border:3px solid var(--ink);border-radius:24px;padding:34px;
+  box-shadow:8px 8px 0 var(--ink);
+}
+.about-card p{font-size:1.12rem;line-height:1.65;margin-bottom:16px;}
+.about-card p:last-child{margin-bottom:0;}
+.about-card b{color:var(--meta);}
+.about-img img{border-radius:24px;border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);}
+
+/* ---------- MEMES CAROUSEL ---------- */
+#memes{max-width:100%;padding-left:0;padding-right:0;background:var(--lime-deep);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);}
+#memes .memes-head{max-width:1200px;margin:0 auto;padding:0 28px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.car-ctl{display:flex;gap:12px;}
+.car-btn{
+  width:56px;height:56px;border-radius:50%;border:3px solid var(--ink);background:var(--lime);
+  font-size:1.5rem;font-weight:900;cursor:pointer;transition:.15s;color:var(--ink);
+}
+.car-btn:hover{background:var(--ink);color:var(--lime);}
+.carousel{
+  margin-top:36px;display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:10px 28px 30px;scrollbar-width:none;cursor:grab;
+}
+.carousel::-webkit-scrollbar{display:none;}
+.carousel.dragging{cursor:grabbing;scroll-snap-type:none;}
+.meme{
+  flex:0 0 320px;scroll-snap-align:center;
+  background:#111;border:3px solid var(--ink);border-radius:18px;overflow:hidden;
+  box-shadow:6px 6px 0 var(--ink);transition:transform .2s;position:relative;user-select:none;
+}
+.meme:hover{transform:rotate(-1.5deg) scale(1.03);}
+.meme .frame{position:relative;height:320px;overflow:hidden;}
+.meme img{width:100%;height:100%;object-fit:cover;pointer-events:none;}
+.meme .cap{
+  position:absolute;left:0;right:0;text-align:center;
+  font-family:Impact,'Archivo',sans-serif;font-style:normal;font-weight:900;
+  color:#fff;text-transform:uppercase;font-size:1.5rem;line-height:1.1;padding:0 10px;
+  -webkit-text-stroke:1.5px #000;text-shadow:2px 2px 0 #000;letter-spacing:.01em;
+}
+.cap.top{top:10px;}
+.cap.bot{bottom:10px;}
+.meme .tag{background:var(--lime);padding:10px 14px;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;border-top:3px solid var(--ink);color:var(--ink);}
+/* filter variants */
+.f-fried img{filter:saturate(3.2) contrast(1.9) brightness(1.05);}
+.f-invert img{filter:invert(1) hue-rotate(180deg);}
+.f-vapor img{filter:hue-rotate(210deg) saturate(1.6);}
+.f-matrix img{filter:hue-rotate(80deg) saturate(2) contrast(1.3);}
+.f-gray img{filter:grayscale(1) contrast(1.25);}
+.f-pixel img{image-rendering:pixelated;transform:scale(1.001);filter:contrast(1.1);}
+.f-zoom img{transform:scale(2.1);transform-origin:38% 25%;}
+.f-red img{filter:sepia(1) hue-rotate(-45deg) saturate(3.5) contrast(1.2);}
+
+/* ---------- TOKENOMICS ---------- */
+.tok-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;}
+.tok-card{
+  background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:30px;
+  box-shadow:6px 6px 0 var(--ink);transition:.15s;
+}
+.tok-card:hover{transform:translateY(-6px);box-shadow:6px 12px 0 var(--ink);}
+.tok-card .big{font-family:'Archivo';font-style:italic;font-weight:900;font-size:2.2rem;color:var(--meta);}
+.tok-card .lbl{margin-top:6px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.9rem;}
+.tok-card p{margin-top:12px;color:var(--ink-soft);font-size:.98rem;line-height:1.5;}
+
+/* ---------- HOW TO BUY ---------- */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;counter-reset:step;}
+.step{
+  background:var(--lime);border:3px solid var(--ink);border-radius:20px;padding:30px;position:relative;
+  box-shadow:6px 6px 0 var(--ink);
+}
+.step::before{
+  counter-increment:step;content:counter(step);
+  position:absolute;top:-22px;left:22px;width:44px;height:44px;border-radius:50%;
+  background:var(--meta);color:#fff;display:grid;place-items:center;
+  font-family:'Archivo';font-style:italic;font-weight:900;font-size:1.3rem;border:3px solid var(--ink);
+}
+.step h3{font-size:1.25rem;margin:14px 0 10px;text-transform:uppercase;}
+.step p{color:var(--ink-soft);line-height:1.55;}
+
+/* ---------- COMMUNITY / FOOTER ---------- */
+.community{text-align:center;}
+.community .sec-title{margin-bottom:8px;}
+.soc-row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:34px;}
+footer{
+  background:var(--ink);color:var(--lime);padding:50px 28px 30px;text-align:center;
+  border-top:3px solid var(--ink);
+}
+footer .f-title{font-family:'Archivo';font-style:italic;font-weight:900;font-size:2rem;}
+footer .disclaimer{max-width:70ch;margin:18px auto 0;font-size:.82rem;opacity:.75;line-height:1.6;}
+footer .copy{margin-top:24px;font-size:.8rem;opacity:.5;}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:860px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--lime);flex-direction:column;padding:20px;border-bottom:3px solid var(--ink);}
+  .nav-links.open{display:flex;}
+  .hamb{display:block;background:none;border:none;font-size:1.8rem;cursor:pointer;color:var(--ink);}
+  .hero{grid-template-columns:1fr;text-align:center;padding-top:20px;}
+  .hero-badges{align-items:center;}
+  .hero-ctas{justify-content:center;}
+  .ca-bar{margin-left:auto;margin-right:auto;}
+  .hero-img{order:-1;}
+  .hero-img img{width:min(320px,80%);}
+  .about-grid{grid-template-columns:1fr;}
+  .meme{flex:0 0 260px;}
+  .meme .frame{height:260px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#"><img src="assets/vrcat-512.png" alt="VRCAT">$VRCAT</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#memes">Memes</a>
+    <a href="#tokenomics">Catonomics</a>
+    <a href="#how">How to buy</a>
+    <a class="btn nav-buy" href="#how">Buy $VRCAT</a>
+  </div>
+  <button class="hamb" id="hamb">☰</button>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1 class="hero-title"><span class="dollar">$</span>VRCAT</h1>
+    <p class="hero-tag">the first cat in the metaverse. reality is optional. gains are virtual until you sell.</p>
+    <div class="hero-badges">
+      <div class="badge"><span class="badge-ico pons">P</span> launched on <b>&nbsp;pons family.</b></div>
+      <div class="badge"><span class="badge-ico meta">∞</span> paired with <b>&nbsp;META stocks</b></div>
+    </div>
+    <div class="ca-bar">
+      <span class="ca-label">CA</span>
+      <span class="ca-value" id="caValue">TBA — headset charging…</span>
+      <button id="caCopy">Copy</button>
+    </div>
+    <div class="hero-ctas">
+      <a class="btn" href="#how">Buy $VRCAT</a>
+      <a class="btn alt" href="#memes">See memes</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="assets/vrcat.png" alt="VRCAT — a cat wearing a VR headset">
+  </div>
+</header>
+
+<div class="marquee"><div class="marquee-inner" id="marq">
+  <span>$VRCAT</span><span class="blue">∞</span><span>PAWS UP ONLY</span><span class="blue">∞</span><span>THE FIRST CAT IN THE METAVERSE</span><span class="blue">∞</span><span>PAIRED WITH META STOCKS</span><span class="blue">∞</span><span>LAUNCHED ON PONS FAMILY</span><span class="blue">∞</span><span>REALITY IS OPTIONAL</span><span class="blue">∞</span>
+</div></div>
+
+<section id="about">
+  <h2 class="sec-title">Who is VRCAT?</h2>
+  <div class="about-grid">
+    <div class="about-card">
+      <p>One day a regular cat put on a VR headset and never took it off. Now he lives in the <b>metaverse</b>, batting at virtual butterflies and swatting red candles off the chart.</p>
+      <p>While other cats chase laser pointers, VRCAT chases <b>green candles in 4D</b>. He can't see you. He can't hear you. He is fully immersed. He is fully bullish.</p>
+      <p>$VRCAT is launched on <b>pons family</b> and paired with <b>META stocks</b> — because if Zuck can bet everything on the metaverse, so can a cat.</p>
+    </div>
+    <div class="about-img">
+      <img src="assets/banner.png" alt="$VRCAT banner — launched on pons family, paired with META stocks">
+    </div>
+  </div>
+</section>
+
+<section id="memes">
+  <div class="memes-head">
+    <div>
+      <h2 class="sec-title">Meme gallery</h2>
+      <p class="sec-sub">Fresh from the metaverse. Drag, swipe, or smash the arrows. Right-click → save → post. That's the utility.</p>
+    </div>
+    <div class="car-ctl">
+      <button class="car-btn" id="prev" aria-label="Previous meme">←</button>
+      <button class="car-btn" id="next" aria-label="Next meme">→</button>
+    </div>
+  </div>
+  <div class="carousel" id="carousel">
+    <div class="meme"><div class="frame"><img src="assets/vrcat.png" alt="VRCAT meme"><div class="cap top">ME ENTERING</div><div class="cap bot">THE METAVERSE</div></div><div class="tag">the original</div></div>
+    <div class="meme f-fried"><div class="frame"><img src="assets/vrcat.png" alt="VRCAT deep fried meme"><div class="cap top">CAN'T SEE THE CHART</div><div class="cap bot">STILL BULLISH</div></div><div class="tag">deep fried</div></div>
+    <div class="meme f-zoom"><div class="frame"><img src="assets/vrcat.png" alt="VRCAT zoom meme"><div class="cap top">POV:</div><div class="cap bot">YOU SOLD</div></div><div class="tag">extreme close-up</div></div>
+    <div class="meme f-matrix"><div class="frame"><img src="assets/vrcat.png" alt="VRCAT matrix meme"><div class="cap top">HE TOOK</div><div class="cap bot">THE GREEN PILL</div></div><div class="tag">matrix mode</div></div>
+    <div class="meme f-invert"><div class="frame"><img src="assets/vrcat.png" alt="VRCAT inverted meme"><div class="cap top">INVERSE CRAMER</div><div class="cap bot">INVERSE CAT</div></div><div class="tag">inverted</div></div>
+    <div class="meme f-vapor"><div class="frame"><img src="assets/vrcat.png" alt="VRCAT vaporwave meme"><div class="cap top">TOUCH GRASS?</div><div class="cap bot">I TOUCH VIRTUAL GRASS</div></div><div class="tag">vaporcat</div></div>
+    <div class="meme f-gray"><div class="frame"><img src="assets/vrcat.png" alt="VRCAT grayscale meme"><div class="cap top">LIFE BEFORE</div><div class="cap bot">$VRCAT</div></div><div class="tag">the dark ages</div></div>
+    <div class="meme f-red"><div class="frame"><img src="assets/vrcat.png" alt="VRCAT red meme"><div class="cap top">RED CANDLES?</div><div class="cap bot">NOT IN MY HEADSET</div></div><div class="tag">rage mode</div></div>
+    <div class="meme"><div class="frame"><img src="assets/vrcat.png" alt="VRCAT meme"><div class="cap top">9 LIVES</div><div class="cap bot">ALL IN VR</div></div><div class="tag">lore</div></div>
+    <div class="meme f-fried"><div class="frame"><img src="assets/vrcat.png" alt="VRCAT meme"><div class="cap top">ZUCK'S</div><div class="cap bot">FAVORITE CAT</div></div><div class="tag">certified</div></div>
+  </div>
+</section>
+
+<section id="tokenomics">
+  <h2 class="sec-title">Catonomics</h2>
+  <p class="sec-sub">Simple numbers. A cat did the math with a headset on, so double-check nothing — trust fully.</p>
+  <div class="tok-grid">
+    <div class="tok-card"><div class="big">1B</div><div class="lbl">Total supply</div><p>One billion $VRCAT. One for every polygon in his virtual litter box.</p></div>
+    <div class="tok-card"><div class="big">0%</div><div class="lbl">Taxes</div><p>No buy tax. No sell tax. The cat doesn't believe in taxes — he lives in the metaverse.</p></div>
+    <div class="tok-card"><div class="big">∞</div><div class="lbl">META pairing</div><p>Paired with META stocks on pons family. When Zuck pumps, the cat purrs.</p></div>
+    <div class="tok-card"><div class="big">100%</div><div class="lbl">Immersion</div><p>Liquidity locked in, headset strapped on. He is never logging off.</p></div>
+  </div>
+</section>
+
+<section id="how">
+  <h2 class="sec-title">How to buy</h2>
+  <p class="sec-sub">Four steps. Easier than putting a headset on a cat.</p>
+  <div class="steps">
+    <div class="step"><h3>Get a wallet</h3><p>Install a wallet that talks to Robinhood Chain — your gateway into the pons family.</p></div>
+    <div class="step"><h3>Load it up</h3><p>Fund your wallet. This is your ticket into the metaverse — the cat holds the door open.</p></div>
+    <div class="step"><h3>Find $VRCAT</h3><p>Head to pons family and paste the official $VRCAT contract address. Only the official CA — the cat has impostors.</p></div>
+    <div class="step"><h3>Paws up</h3><p>Swap, hold, and put your headset on. You're in the metaverse now. Reality is optional.</p></div>
+  </div>
+</section>
+
+<section class="community">
+  <h2 class="sec-title">Join the litter</h2>
+  <p class="sec-sub" style="margin-left:auto;margin-right:auto;">The metaverse is big and the cat gets lonely. Follow, post memes, stay immersed.</p>
+  <div class="soc-row">
+    <a class="btn" href="#" id="xLink" target="_blank" rel="noopener">𝕏 Twitter</a>
+    <a class="btn" href="#" id="tgLink" target="_blank" rel="noopener">✈ Telegram</a>
+    <a class="btn alt" href="#" id="chartLink" target="_blank" rel="noopener">📈 Chart</a>
+  </div>
+</section>
+
+<footer>
+  <div class="f-title">$VRCAT</div>
+  <p class="disclaimer">$VRCAT is a meme coin with no intrinsic value and no expectation of financial return. It is not affiliated with, endorsed by, or connected to Meta Platforms, Inc. or any cat, real or virtual. This is not financial advice — the founder is a cat wearing a headset. Do your own research.</p>
+  <p class="copy">© 2026 VRCAT. All rights reserved in this reality and every virtual one.</p>
+</footer>
+
+<script>
+// mobile nav
+const hamb=document.getElementById('hamb'),navLinks=document.getElementById('navLinks');
+hamb.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+// duplicate marquee content for seamless loop
+const marq=document.getElementById('marq');
+marq.innerHTML+=marq.innerHTML;
+
+// CA copy
+const CA='TBA';
+document.getElementById('caCopy').addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(CA);}catch(e){}
+  const b=document.getElementById('caCopy');
+  const t=b.textContent;b.textContent='Copied!';setTimeout(()=>b.textContent=t,1400);
+});
+
+// carousel: arrows + drag + autoplay
+const car=document.getElementById('carousel');
+const CARD=344; // card width + gap
+document.getElementById('next').addEventListener('click',()=>car.scrollBy({left:CARD,behavior:'smooth'}));
+document.getElementById('prev').addEventListener('click',()=>car.scrollBy({left:-CARD,behavior:'smooth'}));
+
+let isDown=false,startX=0,scrollStart=0;
+car.addEventListener('pointerdown',e=>{isDown=true;startX=e.pageX;scrollStart=car.scrollLeft;car.classList.add('dragging');});
+window.addEventListener('pointermove',e=>{if(!isDown)return;car.scrollLeft=scrollStart-(e.pageX-startX);});
+window.addEventListener('pointerup',()=>{isDown=false;car.classList.remove('dragging');});
+
+let auto=setInterval(autoStep,3500);
+function autoStep(){
+  if(isDown)return;
+  const max=car.scrollWidth-car.clientWidth-10;
+  if(car.scrollLeft>=max)car.scrollTo({left:0,behavior:'smooth'});
+  else car.scrollBy({left:CARD,behavior:'smooth'});
+}
+car.addEventListener('pointerenter',()=>clearInterval(auto));
+car.addEventListener('pointerleave',()=>{clearInterval(auto);auto=setInterval(autoStep,3500);});
+</script>
+</body>
+</html>
