@@ -7,7 +7,7 @@
 <meta name="description" content="$VRCAT — launched on pons family, paired with META stocks. The first cat in the metaverse.">
 <meta property="og:title" content="$VRCAT — the first cat in the metaverse">
 <meta property="og:description" content="launched on pons family. paired with META stocks. paws up only.">
-<meta property="og:image" content="/assets/banner.png">
+<meta property="og:image" content="/assets/hero-desktop.jpg">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,17 +36,20 @@ a{color:inherit;}
 
 /* ---------- NAV ---------- */
 nav{
-  position:sticky;top:0;z-index:50;
+  position:fixed;top:0;left:0;right:0;z-index:50;
   display:flex;align-items:center;justify-content:space-between;
   padding:14px 28px;
-  background:rgba(203,231,8,.85);backdrop-filter:blur(12px);
-  border-bottom:3px solid var(--ink);
+  background:rgba(12,15,1,.72);backdrop-filter:blur(12px);
+  border-bottom:2px solid rgba(203,231,8,.35);
+  color:var(--lime);
 }
-.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Archivo';font-style:italic;font-weight:900;font-size:1.4rem;text-decoration:none;}
-.nav-logo img{width:38px;height:38px;border-radius:50%;border:2px solid var(--ink);object-fit:cover;}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Archivo';font-style:italic;font-weight:900;font-size:1.4rem;text-decoration:none;color:var(--lime);}
+.nav-logo img{width:38px;height:38px;border-radius:50%;border:2px solid var(--lime);object-fit:cover;}
 .nav-links{display:flex;gap:26px;align-items:center;}
-.nav-links a{text-decoration:none;font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.04em;}
-.nav-links a:hover{color:var(--meta);}
+.nav-links a{text-decoration:none;font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.04em;color:var(--lime);}
+.nav-links a:hover{color:#fff;}
+.nav-links .btn.nav-buy{background:var(--lime);color:var(--ink);border-color:var(--lime);}
+.nav-links .btn.nav-buy:hover{background:var(--meta);color:#fff;border-color:var(--meta);}
 .btn{
   display:inline-block;background:var(--ink);color:var(--lime);
   font-family:'Archivo';font-style:italic;font-weight:900;
@@ -62,35 +65,39 @@ nav{
 
 /* ---------- HERO ---------- */
 .hero{
-  min-height:calc(100vh - 70px);
-  display:grid;grid-template-columns:1.1fr 1fr;align-items:center;
-  max-width:1200px;margin:0 auto;padding:40px 28px 60px;gap:20px;
+  position:relative;min-height:100svh;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  background:#0c0f01;padding:0 28px 46px;
 }
-.hero-title{font-size:clamp(4rem,11vw,9rem);line-height:.9;}
-.hero-title .dollar{color:var(--white);-webkit-text-stroke:3px var(--ink);}
-.hero-tag{margin-top:18px;font-size:clamp(1.1rem,2.2vw,1.5rem);font-weight:500;max-width:30ch;}
-.hero-badges{margin-top:22px;display:flex;flex-direction:column;gap:10px;font-size:1.05rem;}
-.hero-badges .badge{display:flex;align-items:center;gap:10px;}
-.badge-ico{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:900;font-family:'Archivo';font-style:normal;}
-.badge-ico.pons{background:var(--ink);color:var(--lime);}
-.badge-ico.meta{background:transparent;color:var(--meta);font-size:1.6rem;line-height:1;}
-.hero-ctas{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;}
-.hero-img{position:relative;}
-.hero-img img{
-  width:min(480px,100%);margin:0 auto;
-  -webkit-mask-image:radial-gradient(ellipse 72% 72% at 50% 50%,#000 52%,transparent 74%);
-  mask-image:radial-gradient(ellipse 72% 72% at 50% 50%,#000 52%,transparent 74%);
-  animation:float 5s ease-in-out infinite;
+.hero-bg,.hero-bg img{position:absolute;inset:0;width:100%;height:100%;}
+.hero-bg img{object-fit:cover;object-position:center;will-change:transform;}
+.hero::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:34%;
+  background:linear-gradient(to top,rgba(8,10,0,.82),transparent);pointer-events:none;
 }
-@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-18px) rotate(1.5deg);}}
+.hero-overlay{
+  position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:20px;
+  width:100%;max-width:640px;
+}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+.hero .btn{background:var(--lime);color:var(--ink);border-color:var(--lime);box-shadow:0 0 30px rgba(203,231,8,.35);}
+.hero .btn:hover{background:var(--meta);color:#fff;border-color:var(--meta);box-shadow:0 0 40px rgba(6,104,225,.5);}
+.hero .btn.alt{background:transparent;color:var(--lime);}
+.hero .btn.alt:hover{background:var(--lime);color:var(--ink);}
+.scroll-hint{
+  position:relative;z-index:2;margin-top:22px;color:var(--lime);
+  font-size:1.4rem;line-height:1;opacity:.85;
+}
 
 /* CA bar */
 .ca-bar{
-  margin-top:26px;display:flex;align-items:center;gap:0;
-  max-width:520px;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--card);
+  display:flex;align-items:center;gap:0;width:100%;
+  max-width:520px;border:2px solid var(--lime);border-radius:14px;overflow:hidden;
+  background:rgba(12,15,1,.78);backdrop-filter:blur(8px);
+  box-shadow:0 0 34px rgba(203,231,8,.25);
 }
-.ca-bar .ca-label{background:var(--ink);color:var(--lime);font-family:'Archivo';font-style:italic;font-weight:900;padding:12px 14px;font-size:.85rem;}
-.ca-bar .ca-value{flex:1;padding:12px 14px;font-size:.82rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:monospace;}
+.ca-bar .ca-label{background:var(--lime);color:var(--ink);font-family:'Archivo';font-style:italic;font-weight:900;padding:12px 14px;font-size:.85rem;}
+.ca-bar .ca-value{flex:1;padding:12px 14px;font-size:.82rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:monospace;color:var(--lime);}
 .ca-bar button{
   border:none;background:var(--meta);color:#fff;padding:12px 18px;cursor:pointer;
   font-family:'Archivo';font-style:italic;font-weight:900;font-size:.85rem;text-transform:uppercase;
@@ -207,15 +214,9 @@ footer .copy{margin-top:24px;font-size:.8rem;opacity:.5;}
 
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:860px){
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--lime);flex-direction:column;padding:20px;border-bottom:3px solid var(--ink);}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(12,15,1,.96);flex-direction:column;padding:20px;border-bottom:2px solid rgba(203,231,8,.35);}
   .nav-links.open{display:flex;}
-  .hamb{display:block;background:none;border:none;font-size:1.8rem;cursor:pointer;color:var(--ink);}
-  .hero{grid-template-columns:1fr;text-align:center;padding-top:20px;}
-  .hero-badges{align-items:center;}
-  .hero-ctas{justify-content:center;}
-  .ca-bar{margin-left:auto;margin-right:auto;}
-  .hero-img{order:-1;}
-  .hero-img img{width:min(320px,80%);}
+  .hamb{display:block;background:none;border:none;font-size:1.8rem;cursor:pointer;color:var(--lime);}
   .about-grid{grid-template-columns:1fr;}
   .meme{flex:0 0 260px;}
   .meme .frame{height:260px;}
@@ -236,14 +237,14 @@ footer .copy{margin-top:24px;font-size:.8rem;opacity:.5;}
   <button class="hamb" id="hamb">☰</button>
 </nav>
 
-<header class="hero">
-  <div>
-    <h1 class="hero-title"><span class="dollar">$</span>VRCAT</h1>
-    <p class="hero-tag">the first cat in the metaverse. reality is optional. gains are virtual until you sell.</p>
-    <div class="hero-badges">
-      <div class="badge"><span class="badge-ico pons">P</span> launched on <b>&nbsp;pons family.</b></div>
-      <div class="badge"><span class="badge-ico meta">∞</span> paired with <b>&nbsp;META stocks</b></div>
-    </div>
+<header class="hero" id="top">
+  <picture class="hero-bg">
+    <source media="(max-width:640px)" srcset="assets/hero-mobile.jpg">
+    <source media="(max-width:1024px)" srcset="assets/hero-tablet.jpg">
+    <img src="assets/hero-desktop.jpg" alt="$VRCAT — launch on pons family, paired with META stocks" fetchpriority="high">
+  </picture>
+  <h1 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">$VRCAT — the first cat in the metaverse</h1>
+  <div class="hero-overlay">
     <div class="ca-bar">
       <span class="ca-label">CA</span>
       <span class="ca-value" id="caValue">TBA — headset charging…</span>
@@ -254,9 +255,7 @@ footer .copy{margin-top:24px;font-size:.8rem;opacity:.5;}
       <a class="btn alt" href="#memes">See memes</a>
     </div>
   </div>
-  <div class="hero-img">
-    <img src="assets/vrcat.png" alt="VRCAT — a cat wearing a VR headset">
-  </div>
+  <div class="scroll-hint" id="scrollHint">▼</div>
 </header>
 
 <div class="marquee"><div class="marquee-inner" id="marq">
@@ -340,6 +339,8 @@ footer .copy{margin-top:24px;font-size:.8rem;opacity:.5;}
   <p class="copy">© 2026 VRCAT. All rights reserved in this reality and every virtual one.</p>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 // mobile nav
 const hamb=document.getElementById('hamb'),navLinks=document.getElementById('navLinks');
@@ -378,6 +379,54 @@ function autoStep(){
 }
 car.addEventListener('pointerenter',()=>clearInterval(auto));
 car.addEventListener('pointerleave',()=>{clearInterval(auto);auto=setInterval(autoStep,3500);});
+
+// ---------- GSAP ----------
+if(window.gsap){
+  gsap.registerPlugin(ScrollTrigger);
+
+  // hero entrance: bg zoom-out + overlay pop
+  gsap.from('.hero-bg img',{scale:1.18,duration:2,ease:'power3.out'});
+  gsap.from('.hero-overlay > *',{y:50,opacity:0,stagger:.18,delay:.6,duration:.9,ease:'back.out(1.6)'});
+  gsap.from('nav',{y:-70,duration:.8,delay:.3,ease:'power2.out'});
+
+  // scroll hint bounce, fades out on scroll
+  gsap.to('#scrollHint',{y:10,repeat:-1,yoyo:true,duration:.7,ease:'sine.inOut'});
+  gsap.to('#scrollHint',{opacity:0,scrollTrigger:{trigger:'.hero',start:'top top',end:'20% top',scrub:true}});
+
+  // hero parallax on scroll
+  gsap.to('.hero-bg img',{yPercent:14,scale:1.06,ease:'none',
+    scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+  // section titles slide in
+  gsap.utils.toArray('.sec-title').forEach(t=>{
+    gsap.from(t,{x:-70,opacity:0,duration:.7,ease:'power3.out',
+      scrollTrigger:{trigger:t,start:'top 86%'}});
+  });
+  gsap.utils.toArray('.sec-sub').forEach(t=>{
+    gsap.from(t,{x:-40,opacity:0,duration:.7,delay:.1,ease:'power3.out',
+      scrollTrigger:{trigger:t,start:'top 88%'}});
+  });
+
+  // about: card and banner slide from opposite sides
+  gsap.from('.about-card',{x:-90,opacity:0,rotate:-2,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:'.about-grid',start:'top 78%'}});
+  gsap.from('.about-img',{x:90,opacity:0,rotate:2,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:'.about-grid',start:'top 78%'}});
+
+  // memes: staggered pop-in
+  gsap.from('.meme',{y:70,opacity:0,rotate:i=>i%2?3:-3,stagger:.07,duration:.7,ease:'back.out(1.4)',
+    scrollTrigger:{trigger:'#carousel',start:'top 85%'}});
+
+  // tokenomics + steps: staggered rise with wobble
+  gsap.from('.tok-card',{y:60,opacity:0,rotate:i=>i%2?2.5:-2.5,stagger:.12,duration:.7,ease:'back.out(1.5)',
+    scrollTrigger:{trigger:'.tok-grid',start:'top 82%'}});
+  gsap.from('.step',{y:60,opacity:0,scale:.92,stagger:.12,duration:.7,ease:'back.out(1.5)',
+    scrollTrigger:{trigger:'.steps',start:'top 82%'}});
+
+  // community buttons
+  gsap.from('.soc-row .btn',{y:40,opacity:0,scale:.8,stagger:.1,duration:.6,ease:'back.out(2)',
+    scrollTrigger:{trigger:'.soc-row',start:'top 90%'}});
+}
 </script>
 </body>
 </html>
